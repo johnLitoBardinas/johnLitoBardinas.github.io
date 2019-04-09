@@ -4,7 +4,7 @@
 	/* 
 		Hosting Platform: Free github.io webpage
 		Start Date: 02-11-2019
-		Target End Date: 02-17-2019
+		End Date: 02-17-2019
 		-> must have a fucking converge internet connection
 		-> must have a well form icon for advertising just cc the company for creation of icon
 		-> choosen template will be [http://localhost/lazord.netlify.com/particles.html]
@@ -28,5 +28,13 @@
 	 * 02-25-20019
 	 *
 	 * -> Initial Release of the VERnt Website.
+	 * 
+	 */
+	
+
+	/**
+	 * 4:42 PM 04-09-2019
+	 *
+	 * -> Revision for the version2 of the VERnt Website courtesy of (lazalord)
 	 * 
 	 */
