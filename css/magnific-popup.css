@@ -139,7 +139,8 @@ button::-moz-focus-inner {
   font-family: Arial, Baskerville, monospace; }
   .mfp-close:hover,
   .mfp-close:focus {
-    opacity: 1; }
+    opacity: 1;
+    cursor: pointer; }
   .mfp-close:active {
     top: 1px; }
 
