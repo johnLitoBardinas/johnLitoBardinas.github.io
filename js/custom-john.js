@@ -11,7 +11,7 @@ function Profile() {
 	var dateOfBith = new Date('December 15, 1996');
 	var nonProYear = new Date('May 1, 2016');
 	var proYear = new Date('August 18, 2017');
-	var title = 'Full Stack ';
+	var title = 'Full Stack Web Developer';
 	var fromLocation = 'Philippines';
 	var availability = 'Weekends Only';
 
@@ -71,7 +71,7 @@ function Profile() {
 
 $(function () {
 	var johnLito = new Profile();
-	$('#full-name').text(johnLito.fullName);
+	$('#full-name').text(johnLito.firstName + ' ' + johnLito.lastName );
 	$('#age').text(johnLito.computeAge());
 	$('#title').text(johnLito.title);
 	$('#from').text(johnLito.fromLocation);
