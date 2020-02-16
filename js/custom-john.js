@@ -72,9 +72,9 @@ function Profile() {
 $(function () {
 	var johnLito = new Profile();
 	$('#full-name').text(johnLito.firstName + ' ' + johnLito.lastName );
-	$('#age').text(johnLito.computeAge());
+	$('#age').text(johnLito.computeAge() + ' years old');
 	$('#title').text(johnLito.title);
 	$('#from').text(johnLito.fromLocation);
-	$('#exp_prof').text(johnLito.computeWorkingYear(true));
-	$('#exp_nonprof').text(johnLito.computeWorkingYear());
+	$('#exp_prof').text(johnLito.computeWorkingYear(true) + ' Years');
+	$('#exp_nonprof').text(johnLito.computeWorkingYear() + ' Years');
 });
