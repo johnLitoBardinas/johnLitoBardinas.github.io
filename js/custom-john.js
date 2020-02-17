@@ -71,7 +71,7 @@ function Profile() {
 
 $(function () {
 	var johnLito = new Profile();
-	$('#full-name').text(johnLito.firstName + ' ' + johnLito.lastName );
+	$('#full-name').text(johnLito.firstName);
 	$('#age').text(johnLito.computeAge() + ' years old');
 	$('#title').text(johnLito.title);
 	$('#from').text(johnLito.fromLocation);
