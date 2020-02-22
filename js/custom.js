@@ -1,3 +1,74 @@
+/**
+ * Ow!! you came here..
+ */
+
+function Profile() {
+
+	// Instance Member.
+	var fullName = 'John Lito Bardinas';
+	var firstName = 'John Lito';
+	var lastName = 'Bardinas';
+	var dateOfBith = new Date('December 15, 1996');
+	var nonProYear = new Date('May 1, 2016');
+	var proYear = new Date('August 18, 2017');
+	var title = 'Full Stack Web Developer';
+	var fromLocation = 'Philippines';
+	var availability = 'Weekends Only';
+
+	/**
+	 * Return the computed date
+	 * @return Computed Age.
+	 */
+	this.computeAge = function () {
+		var diff_ms = Date.now() - dateOfBith.getTime();
+		var age_dt = new Date(diff_ms);
+		return Math.abs(age_dt.getUTCFullYear() - 1970);
+	}
+
+	/**
+	 * Return the computed Working Years.
+	 * @param {boolean} isProfessionalYear Determine if Professional Year.
+	 * @return COmputed Year.
+	 */
+	this.computeWorkingYear = function (isProfessionalYear) {
+		if (isProfessionalYear) {
+			return Math.abs(new Date().getFullYear() - proYear.getFullYear());
+		}
+
+		return Math.abs(new Date().getFullYear() - nonProYear.getFullYear());
+
+	}
+
+	// Define readonly properties.
+	Object.defineProperties(this, {
+		fullName: {
+			value: fullName,
+			writable: false
+		},
+		'firstName': {
+			value: firstName,
+			writtable: false
+		},
+		'lastName': {
+			value: lastName,
+			writtable: false
+		},
+		'title': {
+			value: title,
+			writable: false
+		},
+		'fromLocation': {
+			value: fromLocation,
+			writable: false
+		},
+		'availability': {
+			value: availability,
+			writable: false
+		}
+	});
+
+}
+
 $(function() {
     "use strict";
     var t = $(window);
@@ -57,18 +128,51 @@ $(function() {
     }), $(".filtering").on("click", "span", function() {
         $(this).addClass("active").siblings().removeClass("active")
     }), $("#contact-form").validator(), $("#contact-form").on("submit", function(t) {
-        if (!t.isDefaultPrevented()) {
-            return $.ajax({
-                type: "POST",
-                url: "contact.php",
-                data: $(this).serialize(),
-                success: function(t) {
-                    var o = "alert-" + t.type,
-                        a = t.message,
-                        e = '<div class="alert ' + o + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + a + "</div>";
-                    o && a && ($("#contact-form").find(".messages").html(e), $("#contact-form")[0].reset())
-                }
-            }), !1
+        t.preventDefault();
+        var mailChimpUrl = "https://gmail.us4.list-manage.com/subscribe/post-json?u=e58db76ac26ac0e4e9a86e3f0&amp;id=0774267233";
+        var $name = $(this).find('#name');
+        var $email = $(this).find('#email');
+        var $message = $(this).find('#message');
+
+
+        if (!$name.val() || !$email.val() || !$message.val()) {
+            $(this).addClass('invalid');
+            return;
         }
+
+        $.ajax({
+            url: mailChimpUrl + '&c=?',
+            data: $(this).serialize(),
+            dataType: 'jsonp',
+            success: function(res, status) {
+
+                if (res.result != 'success') {
+                    $(".message")
+                        .removeClass('d-none alert-success')
+                        .addClass('alert-danger')
+                        .text('This email is invalid. Please enter a different email address.');
+                } else {
+                    $(".message")
+                        .removeClass('d-none alert-danger')
+                        .addClass('alert-success')
+                        .text('Thank you for contacting me..');
+                    $("#contact-form")[0].reset();
+                }
+
+                setTimeout(function () {
+                    $(".message").addClass('d-none').removeClass('alert-success alert-danger').text('');
+                }, 5000);
+
+            }
+        });
+
     })
+
+    var johnLito = new Profile();
+	$('#full-name').text(johnLito.firstName);
+	$('#age').text(johnLito.computeAge() + ' years old');
+	$('#title').text(johnLito.title);
+	$('#from').text(johnLito.fromLocation);
+	$('#exp_prof').text(johnLito.computeWorkingYear(true) + ' Years');
+	$('#exp_nonprof').text(johnLito.computeWorkingYear() + ' Years');
 });
